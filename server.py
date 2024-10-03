@@ -34,8 +34,8 @@ def recieve():
         client, address = server.accept() # Connects any clients that want to connect
         print(f"Connected with {str(address)}")
 
-        client.send("NICK".encode("ascii"))
-        nickname = client.recv(1024).decode("ascii")
+        client.send("NICK".encode("ascii")) # Send "NICK" to the new client to let it know we want its nickname
+        nickname = client.recv(1024).decode("ascii") # Receive the client's nickname
         nicknames.append(nickname)
         clients.append(client)
 

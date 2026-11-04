@@ -1,9 +1,13 @@
 # Python-Chatroom
-A simple chatroom made in Python
+A simple chatroom made in Python.
 ## How to Run
-Make sure you have Python3 installed  
-Run server.py first. Once it runs, it'll tell you the IP address and the port it's running on.  
-Then run client.py and put in the IP address and port of the server.  
-The client will also ask for a nickname.  
+This project requires [Python](https://www.python.org/) in order to run.
+
+First, run `server.py` by running the command `python server.py` in the project root directory.  
+Once the server starts, it will display its IP address and port number in the console.
+
+Next, run `client.py` by running the command `python client.py` in the root directory.  
+Enter the server information when prompted, then enter a client nickanme.
+
 Once the client connects, you can send messages to the chatroom.  
-Running another instance of client.py and connecting it to the server will allow you to send and receive messages from the first client.
+Running more instances of client.py and connecting them to the server will allow you to send and receive messages from other clients.

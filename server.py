@@ -1,21 +1,18 @@
 import threading
 import socket
 
-host = socket.gethostbyname(socket.gethostname()) # Gets the IP of the host
-port = 55555
-
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((host, port))
-server.listen()
 
 clients = []
 nicknames = []
 
 def broadcast(message):
+    """Send a message to every client."""
     for client in clients:
         client.send(message)
 
 def handle(client):
+    """Receive messages from a client until the client closes."""
     while True:
         try:
             message = client.recv(1024) # Waits to receive a message from the client
@@ -30,6 +27,7 @@ def handle(client):
             break
 
 def recieve():
+    """Main server loop. Connects clients and transmits messages."""
     while True:
         client, address = server.accept() # Connects any clients that want to connect
         print(f"Connected with {str(address)}")
@@ -46,5 +44,12 @@ def recieve():
         thread = threading.Thread(target = handle, args = (client,)) # Starts a new thread to handle the client
         thread.start()
 
-print(f"Server active on address {host}:{port}")
-recieve()
+if __name__ == "__main__":
+    host = socket.gethostbyname(socket.gethostname()) # Gets the IP of the host
+    port = 55555
+
+    server.bind((host, port))
+    server.listen()
+
+    print(f"Server active on address {host}:{port}")
+    recieve()
